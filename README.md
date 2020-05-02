@@ -1,5 +1,7 @@
 # `dabs`
 
+Create PNG image in any color
+
 ## node usage
 
 ```bash
