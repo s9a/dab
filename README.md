@@ -46,30 +46,54 @@ dab({}, (err, info) => {
 
 ## CLI
 
+### syntax
+
 - Deets can be in any order
 - Supports hex colors and X11 names
 - Dimension syntax is <code><var>width</var><b>x</b><var>height</var></code> or just `width` for square
-- Quote or escape as needed
-  * Good: `"#000"` `\#000` `"black"` `black`
-  * Fails: `#000`
 
-### CLI examples
+### hexes
 
-#### global
+* Good: `"#000"` `\#000` `"black"` `black`
+* Fails: `#000`
+
+### `node` `npm` `npx`
+
+[<b>node installers</b>](https://nodejs.org/en/download/) provide `node` `npm` `npx`
+
+versions are checkable via your command line
 
 ```bash
-npm install @s9a/dab --global
+node -v
+npm -v
+npx -v
 ```
+
+## CLI examples
+
+- [temporary](#temporary)
+- [project](#project)
+- [clone](#clone)
+- [global](#global)
+
+### temporary
+
+- `npx` lets you dab on the fly with the scoped package name `@s9a/dab`
+- Easy way to try dab **without** saving the package
 
 ```bash
-dab "#dab" dab.png 1280
-dab "#dab" dab.png 1280x640
-dab "Lime" 1280
-dab "Lime" 1280x640
-dab "Lime" 1280x640 lime.png
+npx @s9a/dab "#dab" dab.png 1280
+npx @s9a/dab "#dab" dab.png 1280x640
+npx @s9a/dab "Lime" 1280
+npx @s9a/dab "Lime" 1280x640
+npx @s9a/dab "Lime" 1280x640 lime.png
 ```
 
-#### local
+### project
+
+- You can save `@s9a/dab` as a project dependency
+- Recommended when you want to dab in a project
+- First create `package.json` via `npm init` or manually
 
 ```bash
 npm install @s9a/dab
@@ -83,7 +107,10 @@ npx dab "Lime" 1280x640
 npx dab "Lime" 1280x640 lime.png
 ```
 
-#### clone
+### clone
+
+- Cloning the repo is another way to dab
+- This'll create a folder where you can dab
 
 ```bash
 git clone git@github.com:s9a/dab.git #team
@@ -99,4 +126,29 @@ npx . "#dab" dab.png 1280x640
 npx . "Lime" 1280
 npx . "Lime" 1280x640
 npx . "Lime" 1280x640 lime.png
+```
+
+### global
+
+- This is how to install `dab` as global command
+- Recommended when you wanna dab anywhere and have access
+- May need `--unsafe-perm` to build dependencies
+
+```bash
+npm install @s9a/dab --global #admin
+sudo npm install @s9a/dab --global #user
+```
+
+```bash
+dab "#dab" dab.png 1280
+dab "#dab" dab.png 1280x640
+dab "Lime" 1280
+dab "Lime" 1280x640
+dab "Lime" 1280x640 lime.png
+```
+
+#### uninstall whenever
+
+```bash
+npm uninstall @s9a/dab --global
 ```
