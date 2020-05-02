@@ -1,4 +1,4 @@
-const dabs = require("./")
+const dabz = require("./")
 const wtf = require("./wtf")
 const fs = require("fs")
 const test = require("tape")
@@ -6,14 +6,14 @@ const cleanup = []
 
 test("ufo", t => {
   t.plan(1)
-  t.throws(() => dabs())
+  t.throws(() => dabz())
 })
 
 test("defaults", t => {
   const fill = "#dab"
   const file = "test_defaults.png"
   t.plan(5)
-  dabs({ fill, file }, (err, info) => {
+  dabz({ fill, file }, (err, info) => {
     if (err) throw err
     t.ok(info)
     t.equal(fs.existsSync(file), true)
@@ -30,7 +30,7 @@ test("portrait", t => {
   const width = 600
   const height = 900
   t.plan(5)
-  dabs({ fill, file, width, height }, (err, info) => {
+  dabz({ fill, file, width, height }, (err, info) => {
     if (err) throw err
     t.ok(info)
     t.equal(fs.existsSync(file), true)
@@ -46,7 +46,7 @@ test("autoheight", t => {
   const file = "autoheight.png"
   const width = 500
   t.plan(5)
-  dabs({ fill, file, width }, (err, info) => {
+  dabz({ fill, file, width }, (err, info) => {
     if (err) throw err
     t.ok(info)
     t.equal(fs.existsSync(file), true)
@@ -62,7 +62,7 @@ test("autowidth", t => {
   const file = "test_autowidth.png"
   const height = 500
   t.plan(5)
-  dabs({ fill, file, height }, (err, info) => {
+  dabz({ fill, file, height }, (err, info) => {
     if (err) throw err
     t.ok(info)
     t.equal(fs.existsSync(file), true)
