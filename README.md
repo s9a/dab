@@ -21,9 +21,9 @@ dab(deets, callback=saved)
 ```js
 dab({
   fill: "#bae",
-  file = "bae.png",
-  width = 1600,
-  height = 900,
+  file: "bae.png",
+  width: 1600,
+  height: 900,
 })
 ```
 
