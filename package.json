@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Create PNG image in any color",
   "license": "0BSD",
-  "main": "index.js",
+  "main": "dabs.js",
   "bin": "bin.js",
   "scripts": {
     "lint": "eslint .",
