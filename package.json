@@ -1,6 +1,6 @@
 {
   "name": "@s9a/dab",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "0BSD",
   "main": "dab.js",
   "bin": "bin.js",
