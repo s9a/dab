@@ -1,5 +1,5 @@
 {
-  "name": "dab-png",
+  "name": "dabs",
   "version": "0.0.0",
   "description": "Create PNG image in any color",
   "license": "0BSD",
@@ -10,14 +10,14 @@
     "pretest": "npm run lint",
     "test": "node test"
   },
-  "homepage": "https://github.com/ryanve/dab-png",
+  "homepage": "https://github.com/ryanve/dabs",
   "funding": "https://github.com/sponsors/ryanve",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryanve/dab-png.git"
+    "url": "git+https://github.com/ryanve/dabs.git"
   },
   "bugs": {
-    "url": "https://github.com/ryanve/dab-png/issues"
+    "url": "https://github.com/ryanve/dabs/issues"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

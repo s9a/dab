@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const dabPng = require("./")
+const dabs = require("./")
 const wtf = require("./wtf")
 const vector = process.argv
 
 const understood = wtf(vector.slice(2))
 
-dabPng(understood)
+dabs(understood)

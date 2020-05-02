@@ -1,25 +1,23 @@
-# `dab-png`
+# `dabs`
 
-## install
+## node usage
 
 ```bash
-npm install dab-png --save
-```
-
-## usage
-
-```js
-const dabPng = require("dab-png")
+npm install dabs
 ```
 
 ```js
-dabPng(deets, callback=saved)
+const dabs = require("dabs")
+```
+
+```js
+dabs(deets, callback=saved)
 ```
 
 ### `deets`
 
 ```js
-dabPng({
+dabs({
   fill: "#bae",
   file = "bae.png",
   width = 1600,
@@ -38,7 +36,7 @@ dabPng({
 - you may override with your own `callback`
 
 ```js
-dabPng({}, (err, info) => {
+dabs({}, (err, info) => {
   if (err) throw err
   console.log(info)
 })
@@ -53,13 +51,49 @@ dabPng({}, (err, info) => {
   * Good: `"#000"` `\#000` `"black"` `black`
   * Fails: `#000`
 
+### CLI examples
 
-### cli examples
+#### global
 
+```bash
+npm install dabs --global
 ```
-dab-png "#dab" dab.png 1280
-dab-png "#dab" dab.png 1280x640
-dab-png "Lime" 1280
-dab-png "Lime" 1280x640
-dab-png "Lime" 1280x640 lime.png
+
+```bash
+dabs "#dab" dab.png 1280
+dabs "#dab" dab.png 1280x640
+dabs "Lime" 1280
+dabs "Lime" 1280x640
+dabs "Lime" 1280x640 lime.png
+```
+
+#### local
+
+```bash
+npm install dabs
+```
+
+```bash
+npx dabs "#dab" dab.png 1280
+npx dabs "#dab" dab.png 1280x640
+npx dabs "Lime" 1280
+npx dabs "Lime" 1280x640
+npx dabs "Lime" 1280x640 lime.png
+```
+
+#### clone
+
+```bash
+git clone https://github.com/ryanve/dabs.git
+cd dabs
+npm install
+npm test
+```
+
+```bash
+npx . "#dab" dab.png 1280
+npx . "#dab" dab.png 1280x640
+npx . "Lime" 1280
+npx . "Lime" 1280x640
+npx . "Lime" 1280x640 lime.png
 ```
