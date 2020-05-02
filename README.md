@@ -1,25 +1,25 @@
-# `dabs`
+# `dabz`
 
 Create PNG image in any color
 
 ## node usage
 
 ```bash
-npm install dabs
+npm install dabz
 ```
 
 ```js
-const dabs = require("dabs")
+const dabz = require("dabz")
 ```
 
 ```js
-dabs(deets, callback=saved)
+dabz(deets, callback=saved)
 ```
 
 ### `deets`
 
 ```js
-dabs({
+dabz({
   fill: "#bae",
   file = "bae.png",
   width = 1600,
@@ -38,7 +38,7 @@ dabs({
 - you may override with your own `callback`
 
 ```js
-dabs({}, (err, info) => {
+dabz({}, (err, info) => {
   if (err) throw err
   console.log(info)
 })
@@ -58,36 +58,36 @@ dabs({}, (err, info) => {
 #### global
 
 ```bash
-npm install dabs --global
+npm install dabz --global
 ```
 
 ```bash
-dabs "#dab" dab.png 1280
-dabs "#dab" dab.png 1280x640
-dabs "Lime" 1280
-dabs "Lime" 1280x640
-dabs "Lime" 1280x640 lime.png
+dabz "#dab" dab.png 1280
+dabz "#dab" dab.png 1280x640
+dabz "Lime" 1280
+dabz "Lime" 1280x640
+dabz "Lime" 1280x640 lime.png
 ```
 
 #### local
 
 ```bash
-npm install dabs
+npm install dabz
 ```
 
 ```bash
-npx dabs "#dab" dab.png 1280
-npx dabs "#dab" dab.png 1280x640
-npx dabs "Lime" 1280
-npx dabs "Lime" 1280x640
-npx dabs "Lime" 1280x640 lime.png
+npx dabz "#dab" dab.png 1280
+npx dabz "#dab" dab.png 1280x640
+npx dabz "Lime" 1280
+npx dabz "Lime" 1280x640
+npx dabz "Lime" 1280x640 lime.png
 ```
 
 #### clone
 
 ```bash
-git clone https://github.com/ryanve/dabs.git
-cd dabs
+git clone https://github.com/ryanve/dabz.git
+cd dabz
 npm install
 npm test
 ```
