@@ -1,0 +1,25 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-empty-pattern": "error",
+    "no-extra-parens": "error",
+    "no-extra-semi": "error",
+    "no-func-assign": "error",
+    "no-redeclare": "error",
+    "no-unused-vars": "error",
+    "no-unreachable": "error",
+    "quotes": ["error", "double"],
+    "semi": ["error", "never"]
+  }
+}
