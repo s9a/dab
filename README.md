@@ -27,7 +27,7 @@ dab(deets, callback=dab.terse)
   - Supports `png` `gif` `tif` `jpg` `webp` `svg`
 - <b>`to`</b> is the filename to save to
   - Default is like `[from]_[shape].png`
-  - Supports `png` `gif` `tif` `jpg` `webp`
+  - Supports `png` `tif` `jpg` `webp`
 - <b>`shape`</b> is desired dimensions in pixels
   - Supports [wtb formats](https://github.com/ryanve/wtb/blob/master/README.md)
   - Default is `960` aka `"960"` aka `"960x960"` aka `[960, 960]`
