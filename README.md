@@ -1,6 +1,8 @@
 # `dab`
 
-Create PNG image in any color
+- Create images in any color
+- Convert image filetypes
+- Resize images
 
 ## node usage
 
@@ -13,36 +15,70 @@ const dab = require("@s9a/dab")
 ```
 
 ```js
-dab(deets, callback=saved)
+dab(deets, callback=dab.terse)
 ```
 
 ### `deets`
 
+#### properties
+
+- <b>`from`</b> is a filename <b>or</b> color format <b>or</b> named color
+  - Default is `"#dab"`
+  - Supports `png` `gif` `tif` `jpg` `webp` `svg`
+- <b>`to`</b> is the filename to save to
+  - Default is like `[from]_[shape].png`
+  - Supports `png` `gif` `tif` `jpg` `webp`
+- <b>`shape`</b> is desired dimensions in pixels
+  - Supports [wtb formats](https://github.com/ryanve/wtb/blob/master/README.md)
+  - Default is `960` aka `"960"` aka `"960x960"` aka `[960, 960]`
+
+#### create png from color
+
 ```js
 dab({
-  fill: "#bae",
-  file: "bae.png",
-  width: 1600,
-  height: 900,
+  from: "#bae",
+  to: "bae.png",
+  shape: "1280x640",
 })
 ```
 
-- `fill` with any recognizable color format. Default: `"transparent"`
-- `width` in pixels. Default: `height || 1`
-- `height` in pixels. Default: `width || 1`
-- `file` is the filename or filepath to save to. Default: <code><var>width</var><b>x</b><var>height</var><b>.png</b></code>
+#### convert jpg to webp
+
+```js
+dab({
+  from: "foto.jpg",
+  to: "foto.webp",
+  shape: "1280x640",
+})
+```
 
 ### `callback`
 
-- default `callback` logs success or throws error
-- you may override with your own `callback`
+- `callback` may be custom or [preset](#callback-presets)
+- `callback` defaults to `dab.terse`
+
 
 ```js
-dab({}, (err, info) => {
+dab({})
+```
+
+```js
+dab({}, dab.verbose)
+```
+
+```js
+dab({}, (err, did) => {
   if (err) throw err
-  console.log(info)
+  console.log(did)
 })
 ```
+
+#### [callback presets](radio.js)
+
+- `dab.verbose` verbose info
+- `dab.terse` terse info
+- `dab.quiet` only warnings or errors
+- `dab.silent` nothing
 
 ## CLI
 
@@ -56,6 +92,14 @@ dab({}, (err, info) => {
 
 * Good: `"#000"` `\#000` `"black"` `black`
 * Fails: `#000`
+
+### flags
+
+- `--help`
+- `--silent`
+- `--quiet`
+- `--terse` default
+- `--verbose`
 
 ### `node` `npm` `npx`
 
