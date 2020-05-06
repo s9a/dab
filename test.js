@@ -1,6 +1,7 @@
 const dab = require("./")
 const wtf = require("./wtf")
 const fs = require("fs")
+const sane = require("./sane")
 const test = require("tape")
 const cleanup = []
 const radio = require("./radio")
@@ -92,7 +93,7 @@ test("autowidth", t => {
 })
 
 test("wtf", t => {
-  t.plan(12)
+  t.plan(10)
   t.ok(wtf("#333").from === "#333")
   t.ok(wtf(["#333", "333.png", "555"]).from === "#333")
   t.ok(wtf(["#333", "333.png", "555"]).to === "333.png")
@@ -103,8 +104,45 @@ test("wtf", t => {
   t.ok(wtf(["was.png", "any.png", 555]).to === "any.png")
   t.ok(wtf(["was.png", "any.png", 555]).from === "was.png")
   t.ok(wtf(["was.png", "any.png", 555]).shape.height === 555)
+})
+
+test("tmi", t => {
+  t.plan(2)
   t.ok(wtf(["was.png", "tmi.png", "any.png", "--silent"]).from === "was.png")
   t.ok(wtf(["was.png", "tmi.png", "any.png", "--silent"]).to === "any.png")
+})
+
+test("fun", t => {
+  t.plan(3)
+  t.ok(
+    wtf("lab(52.2345% -40.1645 59.9971)").from
+    === "lab(52.2345% -40.1645 59.9971)"
+   )
+  t.ok(
+    wtf("rgba(1e2, .5e1, .5e0, +.25e2%)").from
+    === "rgba(1e2, .5e1, .5e0, +.25e2%)"
+   )
+  t.ok(
+    wtf("hsla(240 100% 50% / .05)").from
+    === "hsla(240 100% 50% / .05)")
+})
+
+test("sane", t => {
+  t.plan(5)
+  t.ok(sane(" #bff ") === "bff")
+  t.ok(sane(" #bff#bff ") === "bffbff")
+  t.ok(
+    sane("lab(52.2345% -40.1645 59.9971)")
+    ===  "lab_52.2345_-40.1645_59.9971"
+  )
+  t.ok(
+    sane("rgba(1e2, .5e1, .5e0, +.25e2%)")
+    ===  "rgba_1e2_.5e1_.5e0_+.25e2"
+  )
+  t.ok(
+    sane("hsla(240 100% 50% / .05)")
+    ===  "hsla_240_100_50_.05"
+  )
 })
 
 test.onFinish(() => {

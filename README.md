@@ -84,9 +84,14 @@ dab({}, (err, did) => {
 
 ### syntax
 
-- Deets can be in any order
-- Supports hex colors and X11 names
-- Dimension syntax is <code><var>width</var><b>x</b><var>height</var></code> or just `width` for square
+```bash
+dab [from] [to] [shape]
+```
+
+- supports the same [properties](#properties) as the node syntax
+- `from` can be a filename or color format including [hexes](#hexes) and named colors
+- `to` can be a filename
+- shape Dimension syntax is <code><var>width</var><b>x</b><var>height</var></code> or just `width` for square
 
 ### hexes
 
@@ -128,9 +133,9 @@ npx -v
 ```bash
 npx @s9a/dab "#dab" dab.png 1280
 npx @s9a/dab "#dab" dab.png 1280x640
-npx @s9a/dab "Lime" 1280
-npx @s9a/dab "Lime" 1280x640
-npx @s9a/dab "Lime" 1280x640 lime.png
+npx @s9a/dab "lime" 1280
+npx @s9a/dab "lime" 1280x640
+npx @s9a/dab "rgb(0, 255, 0)" 1280x640
 ```
 
 ### project
@@ -146,9 +151,9 @@ npm install @s9a/dab
 ```bash
 npx dab "#dab" dab.png 1280
 npx dab "#dab" dab.png 1280x640
-npx dab "Lime" 1280
-npx dab "Lime" 1280x640
-npx dab "Lime" 1280x640 lime.png
+npx dab "lime" 1280
+npx dab "lime" 1280x640
+npx dab "rgb(0, 255, 0)" 1280x640
 ```
 
 ### clone
@@ -167,9 +172,9 @@ npm test
 ```bash
 npx . "#dab" dab.png 1280
 npx . "#dab" dab.png 1280x640
-npx . "Lime" 1280
-npx . "Lime" 1280x640
-npx . "Lime" 1280x640 lime.png
+npx . "lime" 1280
+npx . "lime" 1280x640
+npx . "rgb(0, 255, 0)" 1280x640
 ```
 
 ### global
@@ -186,9 +191,9 @@ sudo npm install @s9a/dab --global #user
 ```bash
 dab "#dab" dab.png 1280
 dab "#dab" dab.png 1280x640
-dab "Lime" 1280
-dab "Lime" 1280x640
-dab "Lime" 1280x640 lime.png
+dab "lime" 1280
+dab "lime" 1280x640
+dab "rgb(0, 255, 0)" 1280x640
 ```
 
 #### uninstall whenever

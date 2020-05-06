@@ -1,5 +1,6 @@
 const wtb = require("wtb")
 const path = require("path")
+const sane = require("./sane")
 const sharp = require("sharp")
 const radio = require("./radio")
 const terse = radio.terse
@@ -15,8 +16,8 @@ function dab({ from, romeo, shape, to }, callback) {
   let height = box.height
   let resize = { width, height }
   to = to || (fill
-    ? from.replace(/[^\w]/g, "")
-    : path.basename(from)
+    ? sane(from)
+    : path.basename(from, path.extname(from))
   ) + `_${width}x${height}.png`
 
   let work = fill ? {

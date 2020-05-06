@@ -1,8 +1,9 @@
 const radio = require("./radio")
 const wtb = require("wtb")
 const path = require("path")
+const trim = "".trim
 const flag =/^-/
-const dimension = /^\d[\deExX]+$/
+const fun = /^\w+\([\s\w%/,.+-]+\)$/
 const x11 =/^[a-zA-Z]+$/
 const hex = /^#\w+$/
 
@@ -13,11 +14,13 @@ module.exports = v => {
   let fills = []
   let group = v => {
     if (v instanceof Array) return v.forEach(group)
-    if (v instanceof Object || v == null) return
-    if (v === Number(v) || v != v) return shape = wtb(v)
-    if (path.extname(v)) return files.push(v)
+    if (v instanceof Object || !v) return
+    v = trim.call(v)
     if (hex.test(v)) return fills.push(v)
-    if (dimension.test(v)) return shape = wtb(v)
+    let dot = path.extname(v)
+    if (dot && !wtb(dot).area) return files.push(v)
+    if (fun.test(v)) return fills.push(v)
+    if (wtb(v).area) return shape = wtb(v)
     if (flag.test(v) && radio(v)) return romeo = v
     if (x11.test(v)) return fills.push(v)
   }
