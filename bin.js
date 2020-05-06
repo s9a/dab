@@ -2,8 +2,10 @@
 
 const dab = require("./")
 const wtf = require("./wtf")
-const vector = process.argv
+const radio = require("./radio")
+const vector = process.argv.slice(2)
+const help = v => radio(v) === radio.help
 
-const understood = wtf(vector.slice(2))
-
-dab(understood)
+vector.some(help)
+  ? radio.help()
+  : dab(wtf(vector))
