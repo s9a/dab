@@ -22,15 +22,17 @@ dab(deets, callback=dab.terse)
 
 #### properties
 
-- <b>`from`</b> is a filename <b>or</b> color format <b>or</b> named color
+- <b>`from`</b> is a filename <b>or</b> color format
   - Default is `"#dab"`
   - Supports `png` `gif` `tif` `jpg` `webp` `svg`
+  - Supports hexes and named colors or `rgb` `hsl` with commas
 - <b>`to`</b> is the filename to save to
   - Default is like `[from]_[shape].png`
   - Supports `png` `tif` `jpg` `webp`
 - <b>`shape`</b> is desired dimensions in pixels
   - Supports [wtb formats](https://github.com/ryanve/wtb/blob/master/README.md)
   - Default is `960` aka `"960"` aka `"960x960"` aka `[960, 960]`
+
 
 #### create png from color
 
@@ -89,14 +91,16 @@ dab [from] [to] [shape]
 ```
 
 - supports the same [properties](#properties) as the node syntax
-- `from` can be a filename or color format including [hexes](#hexes) and named colors
+- `from` can be a filename or [color format](#hexes)
 - `to` can be a filename
 - shape Dimension syntax is <code><var>width</var><b>x</b><var>height</var></code> or just `width` for square
 
 ### hexes
 
-* Good: `"#000"` `\#000` `"black"` `black`
-* Fails: `#000`
+* **Good:** `"#000"` `'#000'` `\#000` `"rgb(0, 0, 0)"` `"black"` `'black'` `black`
+* **Fails:** `#000` `rgb(0, 0, 0)`
+* CLI sees **#** as comment if seen without quotes or backslash
+* CLI honors **alphabet** hexes like `#bed` as `bed` as shorthand but **not** like `b3d`
 
 ### flags
 
