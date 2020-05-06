@@ -20,7 +20,8 @@
     "url": "https://github.com/s9a/dab/issues"
   },
   "dependencies": {
-    "sharp": "^0.25.1"
+    "sharp": "^0.25.2",
+    "wtb": "^0.2.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -28,6 +29,19 @@
   },
   "keywords": [
     "png",
-    "color"
+    "gif",
+    "jpg",
+    "svg",
+    "tif",
+    "webp",
+    "image",
+    "color",
+    "colour",
+    "images",
+    "resize",
+    "resizer",
+    "convert",
+    "converter",
+    "conversion"
   ]
 }

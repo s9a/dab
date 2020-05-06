@@ -1,91 +1,150 @@
 const dab = require("./")
 const wtf = require("./wtf")
 const fs = require("fs")
+const sane = require("./sane")
 const test = require("tape")
 const cleanup = []
+const radio = require("./radio")
+const waves = Object.keys(radio)
 
-test("ufo", t => {
-  t.plan(1)
-  t.throws(() => dab())
+test("keys", t => {
+  t.plan(2)
+  t.ok(waves.length)
+  t.ok(waves.length <= Object.keys(dab).length)
+})
+
+test("radio", t => {
+  const { silent, quiet, terse, verbose } = radio
+  const err = new Error
+  t.plan(9)
+  t.ok(radio("--help").name === "help")
+  t.ok(radio("--silent").name === "silent")
+  t.ok(radio("--quiet").name === "quiet")
+  t.ok(radio("--terse").name === "terse")
+  t.ok(radio("--verbose").name === "verbose")
+  t.doesNotThrow(silent.bind(radio, err))
+  t.throws(quiet.bind(radio, err))
+  t.throws(terse.bind(radio, err))
+  t.throws(verbose.bind(radio, err))
 })
 
 test("defaults", t => {
-  const fill = "#dab"
-  const file = "test_defaults.png"
+  const from = "#dab"
+  const to = "test_defaults.png"
   t.plan(5)
-  dab({ fill, file }, (err, info) => {
+  dab({ from, to }, (err, info) => {
     if (err) throw err
     t.ok(info)
-    t.equal(fs.existsSync(file), true)
-    t.equal(info.format, "png")
-    t.equal(info.width, 1)
-    t.equal(info.height, 1)
-    cleanup.push(file)
+    t.ok(fs.existsSync(to))
+    t.ok(info.to === to)
+    t.ok(info.width === 960)
+    t.ok(info.height === 960)
+    cleanup.push(to)
   })
 })
 
 test("portrait", t => {
-  const fill = "#bae"
-  const file = "test_landscape.png"
+  const from = "#bae"
+  const to = "test_landscape.png"
   const width = 600
   const height = 900
   t.plan(5)
-  dab({ fill, file, width, height }, (err, info) => {
+  dab({ from, to, shape: "600x900" }, (err, info) => {
     if (err) throw err
     t.ok(info)
-    t.equal(fs.existsSync(file), true)
-    t.equal(info.format, "png")
-    t.equal(info.width, width)
-    t.equal(info.height, height)
-    cleanup.push(file)
+    t.ok(fs.existsSync(to))
+    t.ok(info.to === to)
+    t.ok(info.width === width)
+    t.ok(info.height === height)
+    cleanup.push(to)
   })
 })
 
 test("autoheight", t => {
-  const fill = "#bff"
-  const file = "autoheight.png"
+  const from = "#bff"
+  const to = "autoheight.png"
   const width = 500
   t.plan(5)
-  dab({ fill, file, width }, (err, info) => {
+  dab({ from, to, shape: width }, (err, info) => {
     if (err) throw err
     t.ok(info)
-    t.equal(fs.existsSync(file), true)
-    t.equal(info.format, "png")
-    t.equal(info.width, width)
-    t.equal(info.height, width)
-    cleanup.push(file)
+    t.ok(fs.existsSync(to))
+    t.ok(info.to === to)
+    t.ok(info.width === width)
+    t.ok(info.height === width)
+    cleanup.push(to)
   })
 })
 
 test("autowidth", t => {
-  const fill = "#bed"
-  const file = "test_autowidth.png"
+  const from = "#bed"
+  const to = "test_autowidth.png"
   const height = 500
   t.plan(5)
-  dab({ fill, file, height }, (err, info) => {
+  dab({ from, to, shape: height }, (err, info) => {
     if (err) throw err
     t.ok(info)
-    t.equal(fs.existsSync(file), true)
-    t.equal(info.format, "png")
-    t.equal(info.width, height)
-    t.equal(info.height, height)
-    cleanup.push(file)
+    t.ok(fs.existsSync(to))
+    t.ok(info.to === to)
+    t.ok(info.width === height)
+    t.ok(info.height === height)
+    cleanup.push(to)
   })
 })
 
 test("wtf", t => {
-  const empty = {}
-  const empties = ["", [], {}, null, undefined]
+  t.plan(10)
+  t.ok(wtf("#333").from === "#333")
+  t.ok(wtf(["#333", "333.png", "555"]).from === "#333")
+  t.ok(wtf(["#333", "333.png", "555"]).to === "333.png")
+  t.ok(wtf(["#333", "333.png", "555"]).shape.width === 555)
+  t.ok(wtf(["#333", "333.png", "555x888"]).shape.height === 888)
+  t.ok(wtf(["#333", "333.png", "555X888"]).shape.height === 888)
+  t.ok(wtf(["any.png"]).to === "any.png")
+  t.ok(wtf(["was.png", "any.png", 555]).to === "any.png")
+  t.ok(wtf(["was.png", "any.png", 555]).from === "was.png")
+  t.ok(wtf(["was.png", "any.png", 555]).shape.height === 555)
+})
 
-  t.plan(empties.length + 4)
-  empties.forEach(v => t.deepEqual(wtf(v), empty))
+test("tmi", t => {
+  t.plan(2)
+  t.ok(wtf(["was.png", "tmi.png", "any.png", "--silent"]).from === "was.png")
+  t.ok(wtf(["was.png", "tmi.png", "any.png", "--silent"]).to === "any.png")
+})
 
-  t.deepEqual(wtf("#333"), { fill: "#333" })
-  t.deepEqual(wtf("333"), { width: 333, height: 333 })
-  t.deepEqual(wtf("any.png"), { file: "any.png" })
-  t.deepEqual(wtf("80x20"), { width: 80, height: 20 })
+test("fun", t => {
+  t.plan(3)
+  t.ok(
+    wtf("lab(52.2345% -40.1645 59.9971)").from
+    === "lab(52.2345% -40.1645 59.9971)"
+   )
+  t.ok(
+    wtf("rgba(1e2, .5e1, .5e0, +.25e2%)").from
+    === "rgba(1e2, .5e1, .5e0, +.25e2%)"
+   )
+  t.ok(
+    wtf("hsla(240 100% 50% / .05)").from
+    === "hsla(240 100% 50% / .05)")
+})
+
+test("sane", t => {
+  t.plan(5)
+  t.ok(sane(" #bff ") === "bff")
+  t.ok(sane(" #bff#bff ") === "bffbff")
+  t.ok(
+    sane("lab(52.2345% -40.1645 59.9971)")
+    ===  "lab_52.2345_-40.1645_59.9971"
+  )
+  t.ok(
+    sane("rgba(1e2, .5e1, .5e0, +.25e2%)")
+    ===  "rgba_1e2_.5e1_.5e0_+.25e2"
+  )
+  t.ok(
+    sane("hsla(240 100% 50% / .05)")
+    ===  "hsla_240_100_50_.05"
+  )
 })
 
 test.onFinish(() => {
-  cleanup.forEach(file => fs.unlinkSync(file))
+  cleanup.forEach(to => fs.unlinkSync(to))
 })
