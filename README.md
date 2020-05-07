@@ -145,7 +145,7 @@ npx @s9a/dab "rgb(0, 255, 0)" 1280x640
 ### project
 
 - You can save `@s9a/dab` as a project dependency
-- Recommended when you want to dab in a project
+- Recommended when you wanna dab in a project
 - First create `package.json` via `npm init` or manually
 
 ```bash
