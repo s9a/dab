@@ -1,9 +1,8 @@
 node_modules
 .DS_Store
-*.[gG][iI][fF]
+*.[gtGT][iI][fF]
 *.[jJ][pP][gG]
 *.[jJ][pP][eE][gG]
+*.[hH][eE][iE][cfCF]
 *.[pP][nN][gG]
-*.[tT][iI][fF]
-*.[tT][iI][fF]
 *.[wW][eE][bB][pP]
