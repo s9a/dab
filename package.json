@@ -1,7 +1,7 @@
 {
   "name": "@s9a/dab",
   "version": "0.2.0",
-  "license": "0BSD",
+  "license": "MIT-0",
   "main": "dab.js",
   "bin": "bin.js",
   "scripts": {
