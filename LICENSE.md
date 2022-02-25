@@ -1,4 +1,4 @@
-# MIT license <br> [&copy; s9a](https://github.com/s9a)
+## MIT license <br> [&copy; s9a](https://github.com/s9a)
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining a copy
